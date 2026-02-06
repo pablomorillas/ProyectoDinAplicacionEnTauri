@@ -12,7 +12,7 @@ function BuildingPage() {
         if (!searchTerm) return productos;
         const lower = searchTerm.toLowerCase();
         return productos.filter(p =>
-            p.nombre.toLowerCase().includes(lower)
+            p.name.toLowerCase().includes(lower)
         );
     }, [searchTerm, productos]);
 
@@ -47,20 +47,21 @@ function BuildingPage() {
                 )}
 
                 {!loading && !error && (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="cards-grid">
                         {filteredProductos.length > 0 ? (
                             filteredProductos.map((producto) => (
                                 <Link
-                                    key={producto.id}
-                                    to={`/detalle/api/${producto.id}`}
+                                    key={producto._id}
+                                    to={`/edificios/${producto._id}`}
                                     state={{ producto }}
                                 >
                                     <Edifice
-                                        nombre={producto.nombre}
-                                        foto={producto.imagen}
-                                        precio={producto.precio}
-                                        descripcion={producto.descripcion}
-                                        categoria={producto.categoria}
+                                        id={producto._id}
+                                        name={producto.name}
+                                        photo={producto.photo}
+                                        price={producto.price}
+                                        description={producto.description}
+                                        category={producto.category}
                                     />
                                 </Link>
                             ))

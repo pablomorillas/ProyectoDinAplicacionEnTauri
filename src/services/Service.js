@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_URL = 'http://localhost:5000/productos';
+const API_URL = 'https://din-api-mongodb.onrender.com/productos';
 
 export const createProduct = async (data) => {
   try {
@@ -28,13 +28,7 @@ export const getProducts = async () => {
 export const getProductById = async (id) => {
   try {
     const res = await axios.get(`${API_URL}/${id}`);
-
-    // La API devuelve { message: '...', data: [...] }
-    if (res.data.data && res.data.data.length > 0) {
-      return res.data.data[0];
-    }
-
-    return null; // Si no existe el producto
+    return res.data; // El controlador devuelve el producto directamente
   } catch (error) {
     console.error(`Error al obtener el producto con id ${id}:`, error);
     throw new Error(error.response?.data?.message || "No se pudo obtener el producto.");

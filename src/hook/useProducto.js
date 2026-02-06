@@ -30,7 +30,7 @@ export const useProducto = (id, tipo) => {
                         descripcion: "Edificio de oficinas equipado con salas de reuniones, coworking y sistemas inteligentes de climatización.",
                         precio: 2400000,
                         categoria: "oficinas",
-                        imagen: "../res/img3.webp"
+                        imagen: "/res/img3.webp"
                     });
                 } else {
                     const data = await getProductById(id);

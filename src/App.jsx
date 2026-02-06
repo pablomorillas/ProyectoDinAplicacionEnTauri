@@ -3,14 +3,23 @@
 import HomePage from './pages/HomePage'
 import AdminPage from './pages/AdminPage'
 import Content from './components/Content'
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Nav from './components/Nav'
 import Section from './components/Section'
 import BuildingPage from './pages/BuildingPage'
 import DetalleEdificios from './components/DetalleEdificios.jsx'
 import Footer from './components/Footer.jsx'
+import { useContext } from "react";
+import { UserContext } from "./context/UserContext";
+import Login from "./pages/Login";
 
 function App() {
+  const PrivateRoute = ({ children }) => {
+    const { userLogged } = useContext(UserContext);
+    if (!userLogged) return <Navigate to="/login" replace />;
+    return children;
+  };
+
   return (
     <>
       {/* Barra de navegación principal */}
@@ -23,8 +32,9 @@ function App() {
           <Route index element={<HomePage />} />              {/* Página de inicio */}
           <Route path="inicio" element={<HomePage />} />     {/* Alias de inicio */}
           <Route path="edificios" element={<BuildingPage />} />  {/* Listado de edificios */}
-          <Route path="edificios/:index" element={<DetalleEdificios />} /> {/* Detalle de edificio */}
-          <Route path="admin" element={<AdminPage />} />     {/* Panel de administración */}
+          <Route path="edificios/:id" element={<DetalleEdificios />} /> {/* Detalle de edificio */}
+          <Route path="/admin" element={<PrivateRoute><AdminPage /></PrivateRoute>} />     {/* Panel de administración */}
+          <Route path="/login" element={<Login />} />
         </Route>
 
         {/* Ruta 404 para páginas no encontradas */}

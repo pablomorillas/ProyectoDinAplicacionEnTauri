@@ -10,25 +10,27 @@
  * @param {string} props.descripcion - Description of the building
  * @param {string} props.categoria - Category (e.g., residential, commercial)
  */
-function Edifice({ nombre, foto, precio, descripcion, categoria }) {
+import Card from "./Card.jsx";
+
+function Edifice({ name, photo, price, description, category }) {
   return (
-    <>
+    <Card>
       {/* Building image with alt text for accessibility */}
       <figure>
         <img
-          src={foto}
-          alt={`${nombre} - Category: ${categoria}`}
+          src={photo}
+          alt={`${name} - Category: ${category}`}
         />
       </figure>
 
       {/* Building text information */}
       <header tabIndex="0">
-        <h2>{nombre}</h2>
-        <p className="price">Precio: ${precio.toLocaleString()}</p>
-        <p>Categoría: {categoria}</p>
-        <p>{descripcion}</p>
+        <h2>{name}</h2>
+        <p className="price">Precio: ${price?.toLocaleString()}</p>
+        <p>Categoría: {category}</p>
+        <p className="description-preview">{description}</p>
       </header>
-    </>
+    </Card>
   );
 }
 

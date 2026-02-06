@@ -14,11 +14,11 @@ function BuildingForm() {
     const fileInputRef = useRef(null);
 
     const [formData, setFormData] = useState({
-        nombre: "",
-        descripcion: "",
-        precio: "",
-        categoria: "",
-        imagen: "",
+        name: "",
+        description: "",
+        price: "",
+        category: "",
+        photo: "",
     });
 
     const [validationErrors, setValidationErrors] = useState({});
@@ -38,21 +38,21 @@ function BuildingForm() {
         let newErrors = {};
 
         // Validations
-        if (formData.nombre.trim().length < 5) {
-            newErrors.nombre = "El nombre debe tener al menos 5 caracteres.";
+        if (formData.name.trim().length < 5) {
+            newErrors.name = "El nombre debe tener al menos 5 caracteres.";
         }
 
-        if (formData.descripcion.trim().length < 10) {
-            newErrors.descripcion = "La descripción debe ser más detallada (+10 letras).";
+        if (formData.description.trim().length < 10) {
+            newErrors.description = "La descripción debe ser más detallada (+10 letras).";
         }
 
-        const precioNum = Number(formData.precio);
-        if (!formData.precio || precioNum <= 0) {
-            newErrors.precio = "El precio debe ser un número positivo.";
+        const precioNum = Number(formData.price);
+        if (!formData.price || precioNum <= 0) {
+            newErrors.price = "El precio debe ser un número positivo.";
         }
 
-        if (!formData.categoria) {
-            newErrors.categoria = "Selecciona una categoría válida.";
+        if (!formData.category) {
+            newErrors.category = "Selecciona una categoría válida.";
         }
 
         if (Object.keys(newErrors).length > 0) {
@@ -66,15 +66,15 @@ function BuildingForm() {
         const ok = await addProduct(formData);
 
         if (ok) {
-            alert(`¡El edificio "${formData.nombre}" se ha guardado correctamente!`);
+            alert(`¡El edificio "${formData.name}" se ha guardado correctamente!`);
 
             // Reset form
             setFormData({
-                nombre: "",
-                descripcion: "",
-                precio: "",
-                categoria: "",
-                imagen: "",
+                name: "",
+                description: "",
+                price: "",
+                category: "",
+                photo: "",
             });
 
             if (fileInputRef.current) fileInputRef.current.value = null;
@@ -90,54 +90,54 @@ function BuildingForm() {
 
                 {/* Nombre */}
                 <div className="form-group">
-                    <label htmlFor="nombre">Nombre:</label>
+                    <label htmlFor="name">Nombre:</label>
                     <input
-                        id="nombre"
+                        id="name"
                         type="text"
-                        value={formData.nombre}
+                        value={formData.name}
                         onChange={handleChange}
                         placeholder='Introduce el nombre (min 5 letras)'
-                        className={validationErrors.nombre ? "input-error" : ""}
+                        className={validationErrors.name ? "input-error" : ""}
                     />
-                    {validationErrors.nombre && <span className="error-message">{validationErrors.nombre}</span>}
+                    {validationErrors.name && <span className="error-message">{validationErrors.name}</span>}
                 </div>
 
                 {/* Descripción */}
                 <div className="form-group">
-                    <label htmlFor="descripcion">Descripción:</label>
+                    <label htmlFor="description">Descripción:</label>
                     <textarea
-                        id="descripcion"
-                        value={formData.descripcion}
+                        id="description"
+                        value={formData.description}
                         onChange={handleChange}
                         placeholder='Introduce una descripción (min 10 letras)'
-                        className={validationErrors.descripcion ? "input-error" : ""}
+                        className={validationErrors.description ? "input-error" : ""}
                         rows="3"
                     />
-                    {validationErrors.descripcion && <span className="error-message">{validationErrors.descripcion}</span>}
+                    {validationErrors.description && <span className="error-message">{validationErrors.description}</span>}
                 </div>
 
                 {/* Precio */}
                 <div className="form-group">
-                    <label htmlFor="precio">Precio (€):</label>
+                    <label htmlFor="price">Precio (€):</label>
                     <input
-                        id="precio"
+                        id="price"
                         type="number"
                         placeholder='Introduce un precio positivo'
-                        value={formData.precio}
+                        value={formData.price}
                         onChange={handleChange}
-                        className={validationErrors.precio ? "input-error" : ""}
+                        className={validationErrors.price ? "input-error" : ""}
                     />
-                    {validationErrors.precio && <span className="error-message">{validationErrors.precio}</span>}
+                    {validationErrors.price && <span className="error-message">{validationErrors.price}</span>}
                 </div>
 
                 {/* Categoría */}
                 <div className="form-group">
-                    <label htmlFor="categoria">Categoría:</label>
+                    <label htmlFor="category">Categoría:</label>
                     <select
-                        id="categoria"
-                        value={formData.categoria}
+                        id="category"
+                        value={formData.category}
                         onChange={handleChange}
-                        className={validationErrors.categoria ? "input-error" : ""}
+                        className={validationErrors.category ? "input-error" : ""}
                     >
                         <option value="" disabled>Seleccione una categoría</option>
                         <option value="residencial">Residencial</option>
@@ -146,18 +146,18 @@ function BuildingForm() {
                         <option value="industrial">Industrial</option>
                         <option value="mixto">Mixto</option>
                     </select>
-                    {validationErrors.categoria && <span className="error-message">{validationErrors.categoria}</span>}
+                    {validationErrors.category && <span className="error-message">{validationErrors.category}</span>}
                 </div>
 
                 {/* Imagen */}
                 <div className="form-group">
-                    <label htmlFor="imagen">URL de Imagen:</label>
+                    <label htmlFor="photo">URL de Imagen:</label>
                     <input
-                        id="imagen"
+                        id="photo"
                         type="text"
-                        value={formData.imagen}
+                        value={formData.photo}
                         onChange={handleChange}
-                        placeholder="../res/ejemplo.jpg"
+                        placeholder="/res/ejemplo.jpg"
                     />
                 </div>
 
