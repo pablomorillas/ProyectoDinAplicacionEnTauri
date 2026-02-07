@@ -91,3 +91,25 @@ La aplicación incorpora varias **prácticas de accesibilidad (a11y)** y usabili
 4. **Contraste y legibilidad**: Colores primarios y secundarios bien definidos con variables CSS  
 5. **Responsividad**: Layout adaptativo con Tailwind; menú hamburguesa para móviles  
 6. **Feedback visual**: Hover y transiciones suaves (`transition-colors`) en enlaces y botones  
+
+### Pruebas de la aplicación en funcionamiento
+
+- Inicio:
+
+![alt text](res/Inicio.png)
+
+- Página de edificios:
+
+![alt text](res/Edificios.png)
+
+- Página de detalle:
+
+![alt text](res/Detalle.png)
+
+- Página de admin:
+
+![alt text](res/Admin.png)
+
+- Página de login:
+
+![alt text](res/Login.png)
